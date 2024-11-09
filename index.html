@@ -37,10 +37,11 @@
     </style>
   </head>
   <body class="bg-gray-100 font-sans leading-normal tracking-normal p-0 m-0 ">
-    <div class="container-lg m-auto border max-w-md bg-white overflow-hidden relative h-dvh p-0 m-0" id="app">
+  <div  id="app">
+    <div class="container-lg m-auto border max-w-md bg-white overflow-hidden relative h-dvh p-0 m-0" id="innerContainer">
 
       <!-- Admin Profile -->
-      <div class="overflow-y-auto h-dvh p-0 m-0">
+      <div class="overflow-y-auto h-dvh p-0 m-0" id="innerContainer">
         <div class="p-4">
           <section>
             <div class="w-full max-w-md bg-gray-50 shadow rounded-lg shadow px-1 py-2 my-2">
@@ -295,7 +296,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> </div>
     <script>
       new Vue({
         el: '#app',
@@ -324,6 +325,34 @@
         overlay.classList.toggle('hidden');
       }
     </script>
+	<script>
+    const body = document.body;
+    let startY = 0;
+
+    body.addEventListener('touchstart', (e) => {
+      startY = e.touches[0].clientY;
+    });
+
+    body.addEventListener('touchmove', (e) => {
+      const touch = e.touches[0];
+      const distance = touch.clientY - startY;
+
+      // Apply spring effect to the entire body
+      if ((body.scrollTop === 0 && distance > 0) || 
+          (body.scrollHeight - body.scrollTop === body.clientHeight && distance < 0)) {
+        body.style.transform = `translateY(${distance * 0.3}px)`;
+      }
+    });
+
+    body.addEventListener('touchend', () => {
+      // Reset position when touch ends
+      body.style.transition = 'transform 0.3s ease';
+      body.style.transform = 'translateY(0)';
+      setTimeout(() => {
+        body.style.transition = ''; // Clear transition after reset
+      }, 300);
+    });
+  </script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   </body>
 </html>
