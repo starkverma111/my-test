@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Virus Checker</title>
+    <!-- Tailwind & Flowbite CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://fonts.cdnfonts.com/css/google-sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Vue.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <style>
+      * {
+        font-family: 'Product Sans', sans-serif;
+      }
+
+      border {
+        border: none !important;
+      }
+
+      .shadow {
+        box-shadow: none !important;
+      }
+	  
+	  /* Hide the scrollbar for horizontal scrolling */
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;  /* For Internet Explorer */
+  scrollbar-width: none;  /* For Firefox */
+}
+
+    </style>
+  </head>
+  <body class="bg-gray-100 font-sans leading-normal tracking-normal p-0 m-0 ">
+    <div class="container-lg m-auto border max-w-md bg-white overflow-hidden relative h-dvh p-0 m-0" id="app">
+
+      <!-- Admin Profile -->
+      <div class="overflow-y-auto h-dvh p-0 m-0">
+        <div class="p-4">
+          <section>
+            <div class="w-full max-w-md bg-gray-50 shadow rounded-lg shadow px-1 py-2 my-2">
+              <div class="my-2">
+                <div class="flex items-center mx-4 ">
+                  <div class="flex-shrink-0">
+                    <img class="w-14 h-14 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
+                  </div>
+                  <div class="flex-1 min-w-0 ms-2">
+                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">Thomes Lean</p>
+                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">email@windster.com</p>
+                  </div>
+                  <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white mx-4">
+                    <i class="bi bi-qr-code-scan text-2xl" onclick="toggleSideSheetRight()"></i>
+                  </div>
+				                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white mx-4 me-2">
+                    <i class="bi bi-gear text-2xl" onclick="toggleSideSheetRight()"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+		  
+<!-- Display users profile in circle with horizontal scroll -->
+<section>
+  <div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-2">
+    <div class="flex items-center justify-between mb-4">
+      <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Favorite</h5>
+      <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">View all</a>
+    </div>
+
+    <!-- Horizontal scroll for user profiles with hidden scrollbar -->
+    <div class="overflow-x-auto scrollbar-hidden">
+      <ul class="flex space-x-4">
+        <li v-for="user in users" :key="user.id" class="flex-shrink-0">
+          <div class="flex items-center justify-center">
+            <img 
+              class="w-16 h-16 rounded-full" 
+              :src="'https://i.pravatar.cc/150?img=' + user.id" 
+              alt="User image"
+            >
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+		  
+		  
+          <!-- Display fetched users from the API -->
+          <section>
+            <div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-1">
+              <div class="flex items-center justify-between mb-4">
+                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">My Contacts</h5>
+                <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">View all</a>
+              </div>
+              <div class="flow-root">
+                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                  <li v-for="user in users" :key="user.id" class="py-3 sm:py-4">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0">
+                        <img class="w-8 h-8 rounded-xl" :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
+                      </div>
+                      <div class="flex-1 min-w-0 ms-4">
+                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{ user.name }}</p>
+                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">{{ user.email }}</p>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+          <!-- Floating Button with Plus Icon -->
+          <div class="fixed bottom-5 right-5 z-50">
+            <button onclick="toggleBottomSheet()" class="bg-blue-700 hover:bg-blue-800 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-blue-700 focus:outline-none">
+              <i class="bi bi-person-plus text-2xl"></i>
+            </button>
+          </div>
+          <!-- Overlay -->
+          <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-40"></div>
+          <!-- Bottom Sheet -->
+          <div id="bottomSheet" class="absolute inset-x-0 bottom-0 h-full top-8 transform translate-y-full transition-transform bg-white border-t border-gray-200 shadow-lg rounded-t-3xl p-6 z-50">
+            <div class="flex justify-between items-center">
+              <h2 class="text-lg font-semibold">Bottom Sheet</h2>
+              <button onclick="toggleBottomSheet()" class="text-gray-500 hover:text-gray-700">✕</button>
+            </div>
+            <div class="flex justify-center p-4">
+              <img class="w-32 h-32 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
+            </div>
+            <div class="flex space-x-4 my-4">
+              <!-- First Name Input -->
+              <div class="relative flex-1">
+                <input type="text" id="floating_firstname" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="floating_firstname" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">First Name</label>
+              </div>
+              <!-- Surname Input -->
+              <div class="relative flex-1">
+                <input type="text" id="floating_surname" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+                <label for="floating_surname" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Surname</label>
+              </div>
+            </div>
+            <!-- Mobile Input -->
+            <div class="relative my-4">
+              <input type="text" id="floating_mobile" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+              <label for="floating_mobile" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Mobile</label>
+            </div>
+            <!-- Email Input -->
+            <div class="relative my-4">
+              <input type="text" id="floating_email" class="block rounded-t-lg px-2.5 pb-2.5 pt-5 w-full text-sm text-gray-900 bg-gray-50 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" placeholder=" " />
+              <label for="floating_email" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto">Email address</label>
+            </div>
+            <!-- Submit Button -->
+            <button type="button" class="my-4 w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg 
+				text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Save Contact</button>
+          </div>
+		  
+		  
+          <!-- Right Side Sheet -->
+          <div id="sideSheetRight" class="absolute top-0 right-0 w-full h-dvh transform translate-x-full 
+		  transition-transform bg-gray-50 z-50 overflow-y-auto">
+           
+                <!-- All your sections go here -->
+                <section>
+				  <!-- Navigation Bar -->
+				  <div class="flex items-center justify-between bg-blue-700 shadow-md text-white p-3.5 m-0 rounded-b-xl">
+					<!-- Back Button -->
+					<button class="text-white text-xl " onclick="toggleSideSheetRight()"  >←
+					</button>
+					<h1 class="text-lg font-semibold">Profile</h1>
+					<button class="text-white text-2xl">
+					  ⋮
+					</button>
+				  </div>
+                  <!-- Content from your original code -->
+                  <div class="flex flex-col items-center">
+                    <img class="w-24 h-24 mb-3 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Bonnie image" />
+                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+                    <span class="text-sm text-gray-500 dark:text-gray-400">visual@gmail.com</span>
+                    <span class="text-sm text-gray-500 dark:text-gray-400 my-1">+91 7894561235</span>
+                    <div class="flex mt-4 md:mt-6">
+                      <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+                      <a href="#" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Share</a>
+                    </div>
+                  </div>
+                  <div class="flex justify-center mt-2">
+                    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                        <li class="me-2" role="presentation">
+                          <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                        </li>
+                        <li role="presentation">
+                          <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">QR Code</button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div id="default-tab-content">
+                    <div class="hidden mx-2 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" 
+					aria-labelledby="profile-tab">
+                      <div class="w-full max-w-md p-4 border-0 border-gray-200 rounded-lg">
+                        <div class="flex items-center justify-between mb-4">
+                          <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Social Links</h5>
+                          <a href="#" class="text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"> View all </a>
+                        </div>
+                        <div class="flow-root p-6">
+                          <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <li class="py-3 sm:py-4">
+                              <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                  <img class="w-8 h-8 rounded-full" src="https://i.pravatar.cc/300" alt="Neil image">
+                                </div>
+                                <div class="flex-1 min-w-0 ms-4">
+                                  <p class="text-sm text-gray-500 truncate dark:text-gray-400"> email@windster.com </p>
+                                </div>
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                  <i class="bi bi-box-arrow-in-up-right text-lg me-4"></i>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="py-3 sm:py-4">
+                              <div class="flex items-center ">
+                                <div class="flex-shrink-0">
+                                  <img class="w-8 h-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Facebook_Logo_2023.png/1024px-Facebook_Logo_2023.png" alt="Bonnie image">
+                                </div>
+                                <div class="flex-1 min-w-0 ms-4">
+                                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white"> Bonnie Green </p>
+                                  <p class="text-sm text-gray-500 truncate dark:text-gray-400"> email@windster.com </p>
+                                </div>
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                  <i class="bi bi-box-arrow-in-up-right text-lg me-4"></i>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="py-3 sm:py-4">
+                              <div class="flex items-center ">
+                                <div class="flex-shrink-0">
+                                  <img class="w-8 h-8 rounded-full" src="https://img.freepik.com/free-vector/instagram-vector-social-media-icon-7-june-2021-bangkok-thailand_53876-136728.jpg?w=360" alt="Bonnie image">
+                                </div>
+                                <div class="flex-1 min-w-0 ms-4">
+                                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white"> Bonnie Green </p>
+                                  <p class="text-sm text-gray-500 truncate dark:text-gray-400"> email@windster.com </p>
+                                </div>
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                  <i class="bi bi-box-arrow-in-up-right text-lg me-4"></i>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="py-3 sm:py-4">
+                              <div class="flex items-center ">
+                                <div class="flex-shrink-0">
+                                  <img class="w-8 h-8 rounded-full" src="https://static.vecteezy.com/system/resources/previews/018/930/752/non_2x/twitter-logo-twitter-icon-transparent-free-free-png.png" alt="Bonnie image">
+                                </div>
+                                <div class="flex-1 min-w-0 ms-4">
+                                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white"> Bonnie Green </p>
+                                  <p class="text-sm text-gray-500 truncate dark:text-gray-400"> email@windster.com </p>
+                                </div>
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                  <i class="bi bi-box-arrow-in-up-right text-lg me-4"></i>
+                                </div>
+                              </div>
+                            </li>
+                            <li class="py-3 sm:py-4">
+                              <div class="flex items-center ">
+                                <div class="flex-shrink-0">
+                                  <img class="w-8 h-8 rounded-full" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/2044px-WhatsApp.svg.png" alt="Bonnie image">
+                                </div>
+                                <div class="flex-1 min-w-0 ms-4">
+                                  <p class="text-sm font-medium text-gray-900 truncate dark:text-white"> Bonnie Green </p>
+                                  <p class="text-sm text-gray-500 truncate dark:text-gray-400"> email@windster.com </p>
+                                </div>
+                                <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                                  <i class="bi bi-box-arrow-in-up-right text-lg me-4"></i>
+                                </div>
+                              </div>
+                            </li>
+
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                      <img src="./img/qr-code.png" class="px-24 py-4" />
+                      <p class="text-sm text-gray-500 dark:text-gray-400 text-center my-4">Scan this QR to add this contact</p>
+                     
+                    </div>
+                  </div>
+                </section>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          users: []
+        },
+        mounted() {
+          // Fetch data from placeholder API
+          fetch('https://jsonplaceholder.typicode.com/users').then(response => response.json()).then(data => {
+            this.users = data; // Store the fetched data in 'users'
+          });
+        }
+      });
+
+      function toggleBottomSheet() {
+        const bottomSheet = document.getElementById('bottomSheet');
+        const overlay = document.getElementById('overlay');
+        bottomSheet.classList.toggle('translate-y-full');
+        overlay.classList.toggle('hidden');
+      }
+
+      function toggleSideSheetRight() {
+        const sideSheetRight = document.getElementById('sideSheetRight');
+        const overlay = document.getElementById('overlay');
+        sideSheetRight.classList.toggle('translate-x-full');
+        overlay.classList.toggle('hidden');
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+  </body>
+</html>
