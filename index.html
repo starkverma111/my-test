@@ -43,15 +43,14 @@
       <div class="overflow-y-auto h-dvh p-0 m-0 scroll-smooth">
        
           <section>
-            <div class="w-full max-w-md bg-gray-50 shadow rounded-lg shadow px-1 py-2 my-2">
-              <div class="my-2">
+            <div class="w-full max-w-md bg-gray-100 px-1 pt-4">
                 <div class="flex items-center mx-4 ">
-                  <div class="flex-shrink-0">
-                    <img class="w-14 h-14 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
+                  <div class="flex-shrink-0 rounded-full border">
+                    <img class="w-16 h-16 p-1 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
                   </div>
                   <div class="flex-1 min-w-0 ms-2">
-                    <p class="text-sm font-medium text-gray-900 truncate dark:text-white">Thomes Lean</p>
-                    <p class="text-sm text-gray-500 truncate dark:text-gray-400">email@windster.com</p>
+                    <p class="text-lg font-medium text-gray-900 truncate dark:text-white">Thomes Lean</p>
+                    <p class="text-md text-gray-500 truncate dark:text-gray-400">email@windster.com</p>
                   </div>
                   <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white mx-4  transition-transform active:scale-95 ease-out duration-300 ">
                     <i class="bi bi-qr-code-scan text-2xl" onclick="toggleSideSheetRight()"></i>
@@ -60,8 +59,11 @@
                     <i class="bi bi-gear text-2xl" onclick="toggleSideSheetRight()"></i>
                   </div>
                 </div>
-              </div>
+              
             </div>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+  <path fill="#f3f4f5" fill-opacity="1" d="M0,160L26.7,144C53.3,128,107,96,160,117.3C213.3,139,267,213,320,229.3C373.3,245,427,203,480,170.7C533.3,139,587,117,640,133.3C693.3,149,747,203,800,202.7C853.3,203,907,149,960,122.7C1013.3,96,1067,96,1120,106.7C1173.3,117,1227,139,1280,154.7C1333.3,171,1387,181,1413,186.7L1440,192L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path>
+</svg>
           </section>
           <!-- Display users profile in circle with horizontal scroll -->
           <section>
@@ -72,10 +74,11 @@
               </div>
               <!-- Horizontal scroll for user profiles with hidden scrollbar -->
               <div class="overflow-x-auto scrollbar-hidden p-1">
-                <ul class="flex space-x-4">
+                <ul class="flex space-x-2">
                   <li v-for="user in users" :key="user.id" class="flex-shrink-0">
-                    <div class="flex items-center justify-center">
-                      <img class="w-16 h-16 rounded-full  transition-transform active:scale-90 ease-out duration-300 " :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
+                    <div class="flex items-center justify-center rounded-full border p-1 overflow-hidden">
+                      <img class="w-16 h-16 rounded-full  transition-transform active:scale-90 ease-out duration-300 "
+					  :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
                     </div>
                   </li>
                 </ul>
@@ -94,10 +97,10 @@
                   <li v-for="user in users" :key="user.id" class="py-3 sm:py-4  transition-transform active:scale-95 ease-out duration-300  ">
                     <div class="flex items-center">
                       <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-xl" :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
+                        <img class="w-14 h-14 rounded-xl" :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
                       </div>
                       <div class="flex-1 min-w-0 ms-4 ">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{ user.name }}</p>
+                        <p class="text-md font-medium text-gray-900 truncate dark:text-white">{{ user.name }}</p>
                         <p class="text-sm text-gray-500 truncate dark:text-gray-400">{{ user.email }}</p>
                       </div>
                     </div>
