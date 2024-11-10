@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" >
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,25 +23,25 @@
       .shadow {
         box-shadow: none !important;
       }
-	  
-	  /* Hide the scrollbar for horizontal scrolling */
-.scrollbar-hidden::-webkit-scrollbar {
-  display: none;
-}
 
-.scrollbar-hidden {
-  -ms-overflow-style: none;  /* For Internet Explorer */
-  scrollbar-width: none;  /* For Firefox */
-}
+      /* Hide the scrollbar for horizontal scrolling */
+      .scrollbar-hidden::-webkit-scrollbar {
+        display: none;
+      }
 
+      .scrollbar-hidden {
+        -ms-overflow-style: none;
+        /* For Internet Explorer */
+        scrollbar-width: none;
+        /* For Firefox */
+      }
     </style>
   </head>
   <body class="bg-gray-100 font-sans leading-normal tracking-normal p-0 m-0 ">
-    <div class="container-lg m-auto border max-w-md bg-white overflow-hidden relative h-dvh p-0 m-0" id="app">
-
+    <div class="bg-gray-50 container-lg m-auto border max-w-md overflow-hidden relative h-dvh p-0 m-0" id="app">
       <!-- Admin Profile -->
       <div class="overflow-y-auto h-dvh p-0 m-0 scroll-smooth">
-        <div class="p-2">
+       
           <section>
             <div class="w-full max-w-md bg-gray-50 shadow rounded-lg shadow px-1 py-2 my-2">
               <div class="my-2">
@@ -56,42 +56,32 @@
                   <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white mx-4  transition-transform active:scale-95 ease-out duration-300 ">
                     <i class="bi bi-qr-code-scan text-2xl" onclick="toggleSideSheetRight()"></i>
                   </div>
-				                    <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white mx-4 me-2  transition-transform active:scale-95 ease-out duration-300 ">
+                  <div class="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white mx-4 me-2  transition-transform active:scale-95 ease-out duration-300 ">
                     <i class="bi bi-gear text-2xl" onclick="toggleSideSheetRight()"></i>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-		  
-<!-- Display users profile in circle with horizontal scroll -->
-<section>
-  <div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-2">
-    <div class="flex items-center justify-between mb-4">
-      <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Favorite</h5>
-      <a href="#" class="text-sm font-medium text-blue-600 hover:no-underline dark:text-blue-500  transition-transform active:scale-95 ease-out duration-300 ">View all</a>
-    </div>
-
-    <!-- Horizontal scroll for user profiles with hidden scrollbar -->
-    <div class="overflow-x-auto scrollbar-hidden">
-      <ul class="flex space-x-4">
-        <li v-for="user in users" :key="user.id" class="flex-shrink-0">
-          <div class="flex items-center justify-center">
-            <img 
-              class="w-16 h-16 rounded-full  transition-transform active:scale-95 ease-out duration-300 " 
-              :src="'https://i.pravatar.cc/150?img=' + user.id" 
-              alt="User image"
-            >
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-
-		  
-		  
+          <!-- Display users profile in circle with horizontal scroll -->
+          <section>
+            <div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-2">
+              <div class="flex items-center justify-between mb-4">
+                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Favorite</h5>
+                <a href="#" class="text-sm font-medium text-blue-600 hover:no-underline dark:text-blue-500  transition-transform active:scale-95 ease-out duration-300 ">View all</a>
+              </div>
+              <!-- Horizontal scroll for user profiles with hidden scrollbar -->
+              <div class="overflow-x-auto scrollbar-hidden">
+                <ul class="flex space-x-4">
+                  <li v-for="user in users" :key="user.id" class="flex-shrink-0">
+                    <div class="flex items-center justify-center">
+                      <img class="w-16 h-16 rounded-full  transition-transform active:scale-95 ease-out duration-300 " :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
           <!-- Display fetched users from the API -->
           <section>
             <div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-1">
@@ -126,12 +116,13 @@
           <!-- Overlay -->
           <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-40"></div>
           <!-- Bottom Sheet -->
-          <div id="bottomSheet" class="absolute inset-x-0 bottom-0 h-full top-8 transform translate-y-full transition-transform bg-white border-t border-gray-200 shadow-lg rounded-t-3xl p-6 z-50">
+          <div id="bottomSheet" class="absolute inset-x-0 bottom-0 h-full top-0 transform translate-y-full 
+		  transition-transform bg-white border-t border-gray-200 shadow-lg rounded-t p-6 z-50 ease-out duration-500">
             <div class="flex justify-between items-center">
               <h2 class="text-lg font-semibold">Add New Contact</h2>
               <button onclick="toggleBottomSheet()" class="text-gray-500 hover:text-gray-700 text-2xl  transition-transform active:scale-95 ease-out duration-300 ">✕</button>
             </div>
-            <div class="flex justify-center p-4">
+            <div class="flex justify-center p-4 mt-4">
               <img class="w-32 h-32 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
             </div>
             <div class="flex space-x-4 my-4">
@@ -160,101 +151,82 @@
             <button type="button" class="my-4 w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg 
 				text-sm px-5 py-2.5 me-2 mb-2 transition-transform active:scale-95 ease-out duration-300  ">Save Contact</button>
           </div>
-		  
-		  
           <!-- Right Side Sheet -->
           <div id="sideSheetRight" class="absolute top-0 right-0 w-full h-dvh transform translate-x-full 
 		  transition-transform bg-gray-50 z-50 overflow-y-auto ease-out duration-300 ">
-           
-                <!-- All your sections go here -->
-                <section>
-<div id="navbar" class="navbar flex items-center justify-between bg-white shadow text-gray-700 p-3 border-b-2 
+            <!-- All your sections go here -->
+            <section>
+              <div id="navbar" class="navbar flex items-center justify-between bg-white shadow text-gray-700 p-3 border-b-2 
 border-b-slate-200 sticky top-0 z-10 rounded-b-xl transition-transform duration-100 ease-out">
-  <!-- Back Button -->
-  <button onclick="toggleSideSheetRight()" class="p-1 px-2 rounded-full hover:bg-gray-100 focus:outline-none">
-    <i class="bi bi-arrow-left text-2xl text-gray-700"></i>
-  </button>
-
-  <!-- Title / Profile Name -->
-  <h1 class="text-lg font-semibold">Profile</h1>
-
-  <!-- More Options Button (3 dots) -->
-  <button class="p-1 px-2 rounded-full hover:bg-gray-100 focus:outline-none">
-    <i class="bi bi-three-dots-vertical text-2xl text-gray-700"></i>
-  </button>
-</div>
-
-
-
-
-
-
-
-
-
-
-                  <!-- Content from your original code -->
-                  <div class="flex flex-col items-center mt-6">
-                    <img class="w-24 h-24 mb-3 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Bonnie image" />
-                    <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
-                    <span class="text-sm text-gray-500 dark:text-gray-400">visual@gmail.com</span>
-                    <span class="text-sm text-gray-500 dark:text-gray-400 my-1">+91 7894561235</span>
-                    <div class="flex mt-4 md:mt-6">
-                      <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
-                      <a href="#" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Share</a>
-                    </div>
-                  </div>
-                  <div class="flex justify-center mt-2">
-                    <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
-                      <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
-                        <li class="me-2" role="presentation">
-                          <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
-                        </li>
-                        <li role="presentation">
-                          <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 
+                <!-- Back Button -->
+                <button onclick="toggleSideSheetRight()" class="p-1 px-2 rounded-full hover:bg-gray-100 focus:outline-none">
+                  <i class="bi bi-arrow-left text-2xl text-gray-700"></i>
+                </button>
+                <!-- Title / Profile Name -->
+                <h1 class="text-lg font-semibold">Profile</h1>
+                <!-- More Options Button (3 dots) -->
+                <button class="p-1 px-2 rounded-full hover:bg-gray-100 focus:outline-none">
+                  <i class="bi bi-three-dots-vertical text-2xl text-gray-700"></i>
+                </button>
+              </div>
+              <!-- Content from your original code -->
+              <div class="flex flex-col items-center mt-6">
+                <img class="w-24 h-24 mb-3 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Bonnie image" />
+                <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">Bonnie Green</h5>
+                <span class="text-sm text-gray-500 dark:text-gray-400">visual@gmail.com</span>
+                <span class="text-sm text-gray-500 dark:text-gray-400 my-1">+91 7894561235</span>
+                <div class="flex mt-4 md:mt-6">
+                  <a href="#" class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Add friend</a>
+                  <a href="#" class="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Share</a>
+                </div>
+              </div>
+              <div class="flex justify-center mt-2">
+                <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
+                  <ul class="flex flex-wrap -mb-px text-sm font-medium text-center" id="default-tab" data-tabs-toggle="#default-tab-content" role="tablist">
+                    <li class="me-2" role="presentation">
+                      <button class="inline-block p-4 border-b-2 rounded-t-lg" id="profile-tab" data-tabs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Profile</button>
+                    </li>
+                    <li role="presentation">
+                      <button class="inline-block p-4 border-b-2 rounded-t-lg hover:text-gray-600 hover:border-gray-300 
 						  dark:hover:text-gray-300" id="contacts-tab" data-tabs-target="#contacts" type="button" role="tab" aria-controls="contacts" aria-selected="false">QR Code</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div id="default-tab-content">
+                <div class="hidden mx-2 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                  <div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-1">
+                    <div class="flex items-center justify-between mb-4">
+                      <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">My Contacts</h5>
+                      <a href="#" class="text-sm font-medium text-blue-600 hover:no-underline dark:text-blue-500  transition-transform active:scale-95 ease-out duration-300 ">View all</a>
+                    </div>
+                    <div class="flow-root">
+                      <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li v-for="user in users" :key="user.id" class="py-3 sm:py-4  transition-transform active:scale-95 ease-out duration-300  ">
+                          <div class="flex items-center">
+                            <div class="flex-shrink-0">
+                              <img class="w-8 h-8 rounded-xl" :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
+                            </div>
+                            <div class="flex-1 min-w-0 ms-4 ">
+                              <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{ user.name }}</p>
+                              <p class="text-sm text-gray-500 truncate dark:text-gray-400">{{ user.email }}</p>
+                            </div>
+                          </div>
                         </li>
                       </ul>
                     </div>
                   </div>
-                  <div id="default-tab-content">
-                    <div class="hidden mx-2 rounded-lg bg-gray-50 dark:bg-gray-800" id="profile" role="tabpanel" 
-					aria-labelledby="profile-tab">
-                   
-			<div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-1">
-              <div class="flex items-center justify-between mb-4">
-                <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">My Contacts</h5>
-                <a href="#" class="text-sm font-medium text-blue-600 hover:no-underline dark:text-blue-500  transition-transform active:scale-95 ease-out duration-300 ">View all</a>
+                </div>
+                <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
+                  <img src="./img/qr-code.png" class="px-24 py-4" />
+                  <p class="text-sm text-gray-500 dark:text-gray-400 text-center my-4">Scan this QR to add this contact</p>
+                </div>
               </div>
-              <div class="flow-root">
-                <ul role="list" class="divide-y divide-gray-200 dark:divide-gray-700">
-                  <li v-for="user in users" :key="user.id" class="py-3 sm:py-4  transition-transform active:scale-95 ease-out duration-300  ">
-                    <div class="flex items-center">
-                      <div class="flex-shrink-0">
-                        <img class="w-8 h-8 rounded-xl" :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
-                      </div>
-                      <div class="flex-1 min-w-0 ms-4 ">
-                        <p class="text-sm font-medium text-gray-900 truncate dark:text-white">{{ user.name }}</p>
-                        <p class="text-sm text-gray-500 truncate dark:text-gray-400">{{ user.email }}</p>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-                    </div>
-                    <div class="hidden p-4 rounded-lg bg-gray-50 dark:bg-gray-800" id="contacts" role="tabpanel" aria-labelledby="contacts-tab">
-                      <img src="./img/qr-code.png" class="px-24 py-4" />
-                      <p class="text-sm text-gray-500 dark:text-gray-400 text-center my-4">Scan this QR to add this contact</p>
-                     
-                    </div>
-                  </div>
-                </section>
-           
+            </section>
           </div>
         </div>
       </div>
-    </div>
+  
     <script>
       new Vue({
         el: '#app',
@@ -282,31 +254,23 @@ border-b-slate-200 sticky top-0 z-10 rounded-b-xl transition-transform duration-
         sideSheetRight.classList.toggle('translate-x-full');
         overlay.classList.toggle('hhidden');
       }
-	  
-
-  let lastScrollTop = 0; // To track the last scroll position
-  const navbar = document.getElementById('navbar'); // Your navbar element
-  const sideSheetRight = document.getElementById('sideSheetRight'); // The scrollable div
-  
-  // Add transition for smooth sliding
-  navbar.classList.add('transition-transform', 'duration-300', 'ease-out'); // Tailwind classes for smooth transition
-
-  // Listen for scroll event inside the sideSheetRight div
-  sideSheetRight.addEventListener('scroll', function() {
-    let scrollTop = sideSheetRight.scrollTop; // Get scroll position of sideSheetRight div
-
-    if (scrollTop > lastScrollTop) {
-      // Scrolling down - Hide Navbar with animation
-      navbar.style.transform = 'translateY(-100%)'; // Hide navbar
-    } else {
-      // Scrolling up - Show Navbar with animation
-      navbar.style.transform = 'translateY(0)'; // Show navbar
-    }
-
-    lastScrollTop = scrollTop; // Update the last scroll position
-  });
-
-
+      let lastScrollTop = 0; // To track the last scroll position
+      const navbar = document.getElementById('navbar'); // Your navbar element
+      const sideSheetRight = document.getElementById('sideSheetRight'); // The scrollable div
+      // Add transition for smooth sliding
+      navbar.classList.add('transition-transform', 'duration-300', 'ease-out'); // Tailwind classes for smooth transition
+      // Listen for scroll event inside the sideSheetRight div
+      sideSheetRight.addEventListener('scroll', function() {
+        let scrollTop = sideSheetRight.scrollTop; // Get scroll position of sideSheetRight div
+        if (scrollTop > lastScrollTop) {
+          // Scrolling down - Hide Navbar with animation
+          navbar.style.transform = 'translateY(-100%)'; // Hide navbar
+        } else {
+          // Scrolling up - Show Navbar with animation
+          navbar.style.transform = 'translateY(0)'; // Show navbar
+        }
+        lastScrollTop = scrollTop; // Update the last scroll position
+      });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
   </body>
