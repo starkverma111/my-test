@@ -65,17 +65,17 @@
           </section>
           <!-- Display users profile in circle with horizontal scroll -->
           <section>
-            <div class="w-full max-w-md p-4 bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-2">
-              <div class="flex items-center justify-between mb-4">
+            <div class="w-full max-w-md bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-2">
+              <div class="flex items-center justify-between mb-4 px-4 py-1">
                 <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Favorite</h5>
                 <a href="#" class="text-sm font-medium text-blue-600 hover:no-underline dark:text-blue-500  transition-transform active:scale-95 ease-out duration-300 ">View all</a>
               </div>
               <!-- Horizontal scroll for user profiles with hidden scrollbar -->
-              <div class="overflow-x-auto scrollbar-hidden">
+              <div class="overflow-x-auto scrollbar-hidden p-1">
                 <ul class="flex space-x-4">
                   <li v-for="user in users" :key="user.id" class="flex-shrink-0">
                     <div class="flex items-center justify-center">
-                      <img class="w-16 h-16 rounded-full  transition-transform active:scale-95 ease-out duration-300 " :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
+                      <img class="w-16 h-16 rounded-full  transition-transform active:scale-90 ease-out duration-300 " :src="'https://i.pravatar.cc/150?img=' + user.id" alt="User image">
                     </div>
                   </li>
                 </ul>
@@ -117,7 +117,7 @@
           <div id="overlay" class="fixed inset-0 bg-black opacity-50 hidden z-40"></div>
           <!-- Bottom Sheet -->
           <div id="bottomSheet" class="absolute inset-x-0 bottom-0 h-full top-0 transform translate-y-full 
-		  transition-transform bg-white border-t border-gray-200 shadow-lg rounded-t p-6 z-50 ease-out duration-500">
+		  transition-transform bg-white border-t border-gray-200 shadow-lg rounded-t p-6 z-50 ease-out duration-300">
             <div class="flex justify-between items-center">
               <h2 class="text-lg font-semibold">Add New Contact</h2>
               <button onclick="toggleBottomSheet()" class="text-gray-500 hover:text-gray-700 text-2xl  transition-transform active:scale-95 ease-out duration-300 ">✕</button>
