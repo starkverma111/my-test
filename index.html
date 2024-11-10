@@ -38,15 +38,15 @@
     </style>
   </head>
   <body class="bg-gray-100 font-sans leading-normal tracking-normal p-0 m-0 ">
-    <div class="bg-gray-50 container-lg m-auto border max-w-md overflow-hidden relative h-dvh p-0 m-0" id="app">
+    <div class="bg-gray-50 container-lg m-auto max-w-md overflow-hidden relative h-dvh p-0 m-0" id="app">
       <!-- Admin Profile -->
       <div class="overflow-y-auto h-dvh p-0 m-0 scroll-smooth">
        
           <section>
-            <div class="w-full max-w-md bg-gray-100 px-1 pt-4">
+            <div class="w-full max-w-md bg-gray-100 px-1 pt-8">
                 <div class="flex items-center mx-4 ">
-                  <div class="flex-shrink-0 rounded-full border">
-                    <img class="w-16 h-16 p-1 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
+                  <div class="flex-shrink-0 rounded-full border ">
+                    <img class="w-16 h-16 p-1 rounded-full object-cover transition-transform active:scale-90 ease-out duration-300" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
                   </div>
                   <div class="flex-1 min-w-0 ms-2">
                     <p class="text-lg font-medium text-gray-900 truncate dark:text-white">Thomes Lean</p>
@@ -61,13 +61,13 @@
                 </div>
               
             </div>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-  <path fill="#f3f4f5" fill-opacity="1" d="M0,160L26.7,144C53.3,128,107,96,160,117.3C213.3,139,267,213,320,229.3C373.3,245,427,203,480,170.7C533.3,139,587,117,640,133.3C693.3,149,747,203,800,202.7C853.3,203,907,149,960,122.7C1013.3,96,1067,96,1120,106.7C1173.3,117,1227,139,1280,154.7C1333.3,171,1387,181,1413,186.7L1440,192L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path>
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320" class="drop-shadow-sm">
+  <path fill="#f3f4f6" fill-opacity="1" d="M0,160L26.7,144C53.3,128,107,96,160,117.3C213.3,139,267,213,320,229.3C373.3,245,427,203,480,170.7C533.3,139,587,117,640,133.3C693.3,149,747,203,800,202.7C853.3,203,907,149,960,122.7C1013.3,96,1067,96,1120,106.7C1173.3,117,1227,139,1280,154.7C1333.3,171,1387,181,1413,186.7L1440,192L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z"></path>
 </svg>
           </section>
           <!-- Display users profile in circle with horizontal scroll -->
           <section>
-            <div class="w-full max-w-md bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 my-2">
+            <div class="w-full max-w-md bg-gray-50 shadow rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700 mb-4">
               <div class="flex items-center justify-between mb-4 px-4 py-1">
                 <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Favorite</h5>
                 <a href="#" class="text-sm font-medium text-blue-600 hover:no-underline dark:text-blue-500  transition-transform active:scale-95 ease-out duration-300 ">View all</a>
@@ -112,7 +112,7 @@
           <!-- Floating Button with Plus Icon -->
           <div class="fixed bottom-5 right-5 z-50">
             <button onclick="toggleBottomSheet()" class="bg-blue-700 hover:bg-blue-800 text-white w-14 h-14 rounded-full 
-			flex items-center justify-center shadow-lg hover:bg-blue-700  transition-transform active:scale-95 ease-out duration-300 ">
+			flex items-center justify-center shadow-lg hover:bg-blue-700  transition-transform active:scale-90 ease-out duration-300 ">
               <i class="bi bi-person-plus text-2xl"></i>
             </button>
           </div>
@@ -123,7 +123,7 @@
 		  transition-transform bg-white border-t border-gray-200 shadow-lg rounded-t p-6 z-50 ease-out duration-300">
             <div class="flex justify-between items-center">
               <h2 class="text-lg font-semibold">Add New Contact</h2>
-              <button onclick="toggleBottomSheet()" class="text-gray-500 hover:text-gray-700 text-2xl  transition-transform active:scale-95 ease-out duration-300 ">✕</button>
+              <button onclick="toggleBottomSheet()" class="text-gray-500 hover:text-gray-700 text-2xl  transition-transform active:scale-90 ease-out duration-300 ">✕</button>
             </div>
             <div class="flex justify-center p-4 mt-4">
               <img class="w-32 h-32 rounded-full object-cover" src="https://cdn.pixabay.com/photo/2020/02/10/12/47/girl-4836394_1280.jpg" alt="Thomas image">
@@ -244,19 +244,46 @@ border-b-slate-200 sticky top-0 z-10 rounded-b-xl transition-transform duration-
         }
       });
 
-      function toggleBottomSheet() {
-        const bottomSheet = document.getElementById('bottomSheet');
-        const overlay = document.getElementById('overlay');
-        bottomSheet.classList.toggle('translate-y-full');
-        overlay.classList.toggle('hhidden');
-      }
+ let isBottomSheetOpen = false;
+let isSideSheetOpen = false;
 
-      function toggleSideSheetRight() {
-        const sideSheetRight = document.getElementById('sideSheetRight');
-        const overlay = document.getElementById('overlay');
-        sideSheetRight.classList.toggle('translate-x-full');
-        overlay.classList.toggle('hhidden');
-      }
+function toggleBottomSheet() {
+    const bottomSheet = document.getElementById('bottomSheet');
+    const overlay = document.getElementById('overlay');
+    bottomSheet.classList.toggle('translate-y-full');
+    overlay.classList.toggle('hidden');
+    isBottomSheetOpen = !isBottomSheetOpen;
+
+    if (isBottomSheetOpen) {
+        window.history.pushState({ bottomSheet: true }, ""); // Add to history
+    }
+}
+
+function toggleSideSheetRight() {
+    const sideSheetRight = document.getElementById('sideSheetRight');
+    const overlay = document.getElementById('overlay');
+    sideSheetRight.classList.toggle('translate-x-full');
+    overlay.classList.toggle('hidden');
+    isSideSheetOpen = !isSideSheetOpen;
+
+    if (isSideSheetOpen) {
+        window.history.pushState({ sideSheet: true }, ""); // Add to history
+    }
+}
+
+// Listen for the popstate event to handle the back button
+window.addEventListener("popstate", (event) => {
+    if (isBottomSheetOpen) {
+        toggleBottomSheet(); // Close the bottom sheet if open
+    } else if (isSideSheetOpen) {
+        toggleSideSheetRight(); // Close the side sheet if open
+    } else {
+        window.history.back(); // Go back in the history if nothing is open
+    }
+});
+
+	  
+	  
       let lastScrollTop = 0; // To track the last scroll position
       const navbar = document.getElementById('navbar'); // Your navbar element
       const sideSheetRight = document.getElementById('sideSheetRight'); // The scrollable div
